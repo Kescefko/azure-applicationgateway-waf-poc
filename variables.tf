@@ -8,7 +8,7 @@ variable "resource_group_name" {
 }
 
 variable "location" {
-  default = "Switzerland North"
+  default = "West Europe"
 }
 
 variable "vnet_name" {
