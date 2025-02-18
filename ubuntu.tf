@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "vm_nic" {
   name = "vm-nic"
-  location = azurerm_resource_group.r
-  resource_group_name = azurerm_resource_group.poc.name
+  resource_group_name = azurerm_resource_group.rg.name
+  location = var.location
 
   ip_configuration {
     name = "internal"
@@ -12,8 +12,8 @@ resource "azurerm_network_interface" "vm_nic" {
 
 resource "azurerm_linux_virtual_machine" "backend_vm" {
   name = "backend-vm"
-  resource_group_name = azurerm_resource_group.poc.name
-  location = azurerm_resource_group.poc.location
+  resource_group_name = azurerm_resource_group.rg.name
+  location = var.location
   size = "Standard_B1s"
 
   admin_username = var.vm_admin_username
