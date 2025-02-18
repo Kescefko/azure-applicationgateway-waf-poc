@@ -1,3 +1,10 @@
+resource "azurerm_public_ip" "vm_public_ip" {
+  name                = "vm-public-ip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  allocation_method   = "Static"
+}
+
 resource "azurerm_network_interface" "vm_nic" {
   name = "vm-nic"
   resource_group_name = azurerm_resource_group.rg.name
@@ -7,6 +14,7 @@ resource "azurerm_network_interface" "vm_nic" {
     name = "internal"
     subnet_id = azurerm_subnet.subnet_web.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.vm_public_ip.id
   }
 }
 
@@ -47,8 +55,6 @@ resource "azurerm_linux_virtual_machine" "backend_vm" {
       "echo 'Hello from POC Web App' | sudo tee /var/www/html/index.html",
       "sudo systemctl restart nginx"
     ]
-
-    
   }
 }
 
