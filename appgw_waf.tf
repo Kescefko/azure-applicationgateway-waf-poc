@@ -7,8 +7,8 @@ resource "azurerm_public_ip" "appgw_pip" {
 
 resource "azurerm_application_gateway" "appgw" {
   name = "poc-appgw"
-  resource_group_name = azurerm_resource_group.poc.name
-  location = azurerm_resource_group.poc.location
+  resource_group_name = azurerm_resource_group.rg.name
+  location = var.location
 
   sku {
     name = "WAF_v2"
