@@ -47,6 +47,8 @@ resource "azurerm_linux_virtual_machine" "backend_vm" {
       "echo 'Hello from POC Web App' | sudo tee /var/www/html/index.html",
       "sudo systemctl restart nginx"
     ]
+
+    
   }
 }
 
