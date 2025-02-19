@@ -47,7 +47,7 @@ resource "azurerm_linux_virtual_machine" "backend_vm" {
       type = "ssh"
       user = var.vm_admin_username
       password = var.vm_admin_password
-      host = azurerm_network_interface.vm_nic.private_ip_address
+      host = azurerm_public_ip.vm_public_ip.ip_address
     }
     inline = [
       "sudo apt update -y",
