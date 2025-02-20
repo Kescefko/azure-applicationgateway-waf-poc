@@ -41,20 +41,5 @@ resource "azurerm_linux_virtual_machine" "backend_vm" {
     sku = "18.04-LTS"
     version = "latest"
   }
-
-  provisioner "remote-exec" {
-    connection {
-      type = "ssh"
-      user = var.vm_admin_username
-      password = var.vm_admin_password
-      host = azurerm_public_ip.vm_public_ip.ip_address
-    }
-    inline = [
-      "sudo apt update -y",
-      "sudo apt install nginx -y",
-      "echo 'Hello from POC Web App' | sudo tee /var/www/html/index.html",
-      "sudo systemctl restart nginx"
-    ]
-  }
 }
 
