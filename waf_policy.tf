@@ -2,6 +2,7 @@ resource "azurerm_application_gateway_waf_policy" "example_waf_policy" {
   name                = "example-waf-policy"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
+  
 
   custom_rules {
     name     = "block_sql_injection"
